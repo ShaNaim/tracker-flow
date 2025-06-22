@@ -4,10 +4,15 @@ import { useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { DollarSign, Heart, PlayCircle, CheckSquare, ChevronLeft, ChevronRight } from "lucide-react";
+import { DollarSign, Heart, PlayCircle, CheckSquare, ChevronLeft, ChevronRight, LayoutDashboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
+  {
+    label: "Dashboard",
+    href: "/dashboard",
+    icon: LayoutDashboard,
+  },
   {
     label: "Expenses",
     href: "/expense",
