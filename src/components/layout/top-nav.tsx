@@ -3,8 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import { Bell, ChevronDown, User, Settings, LogOut, Sun, Moon, Monitor, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Bell, ChevronDown, User, Settings, LogOut, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Mock notifications data
@@ -29,14 +28,8 @@ interface TopNavProps {
 export function TopNav({ isMobileOpen, setIsMobileOpen }: TopNavProps) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   const unreadCount = notifications.filter((n) => !n.read).length;
-
-  const handleThemeChange = (newTheme: string) => {
-    setTheme(newTheme);
-    setIsProfileOpen(false);
-  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-16 glass-nav border-b border-gray-200 dark:border-white/10">
@@ -116,30 +109,6 @@ export function TopNav({ isMobileOpen, setIsMobileOpen }: TopNavProps) {
                         <p className="font-medium text-sm text-gray-900 dark:text-white">John Doe</p>
                         <p className="text-xs text-gray-600 dark:text-gray-400">john@example.com</p>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Theme Toggle Section */}
-                  <div className="p-3 border-b border-gray-200 dark:border-white/10">
-                    <p className="text-xs font-medium mb-2 text-gray-600 dark:text-gray-400">Theme</p>
-                    <div className="grid grid-cols-3 gap-1">
-                      {[
-                        { value: "light", icon: Sun, label: "Light" },
-                        { value: "dark", icon: Moon, label: "Dark" },
-                        { value: "system", icon: Monitor, label: "System" },
-                      ].map(({ value, icon: Icon, label }) => (
-                        <button
-                          key={value}
-                          onClick={() => handleThemeChange(value)}
-                          className={cn(
-                            "flex flex-col items-center gap-1 p-2 rounded-lg text-xs transition-colors",
-                            theme === value ? "bg-blue-500/20 text-blue-600 dark:text-blue-400" : "hover:bg-gray-100 dark:hover:bg-white/10 text-gray-700 dark:text-gray-300"
-                          )}
-                        >
-                          <Icon className="w-4 h-4" />
-                          <span>{label}</span>
-                        </button>
-                      ))}
                     </div>
                   </div>
 
